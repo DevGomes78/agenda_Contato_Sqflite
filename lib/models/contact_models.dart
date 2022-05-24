@@ -1,12 +1,6 @@
+import 'package:agenda_contatos/constants/contants_string.dart';
+
 class Contact {
-
-  final String contactTable = "contactTable";
-  final String idColumn = "idColumn";
-  final String nameColumn = "nameColumn";
-  final String emailColumn = "emailColumn";
-  final String phoneColumn = "phoneColumn";
-  final String imgColumn = "imgColumn";
-
   int? id;
   String? name;
   String? email;
@@ -15,25 +9,24 @@ class Contact {
 
   Contact();
 
-  Contact.fromMap(Map map){
-    id = map[idColumn];
-    name = map[nameColumn];
-    email = map[emailColumn];
-    phone = map[phoneColumn];
-    img = map[imgColumn];
+  Contact.fromMap(Map map) {
+    id = map[ContantsData().idColumn];
+    name = map[ContantsData().nameColumn];
+    email = map[ContantsData().emailColumn];
+    phone = map[ContantsData().phoneColumn];
+    img = map[ContantsData().imgColumn];
   }
 
-  Map toMap() {
+  Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {
-      nameColumn: name,
-      emailColumn: email,
-      phoneColumn: phone,
-      imgColumn: img
+      ContantsData().nameColumn: name,
+      ContantsData().emailColumn: email,
+      ContantsData().phoneColumn: phone,
+      ContantsData().imgColumn: img
     };
     if (id != null) {
-      map[idColumn] = id;
+      map[ContantsData().idColumn] = id;
     }
     return map;
   }
-
 }

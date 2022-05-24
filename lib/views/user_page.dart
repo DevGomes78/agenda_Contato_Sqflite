@@ -99,7 +99,6 @@ class UserPage extends StatelessWidget {
                           '    ${contact!.phone.toString()}',
                           style: TextStyle(fontSize: 25),
                         ),
-
                       ],
                     ),
                     SizedBox(height: 15),
@@ -108,16 +107,15 @@ class UserPage extends StatelessWidget {
                     Row(
                       children: [
                         InkWell(
-                          onTap: (){},
+                          onTap: () {},
                           child: Container(
-                            height: 60,
+                              height: 60,
                               child: Image.asset('images/Whats.png')),
                         ),
                         Text(
                           '    ${contact!.phone.toString()}',
                           style: TextStyle(fontSize: 25),
                         ),
-
                       ],
                     ),
                   ],
