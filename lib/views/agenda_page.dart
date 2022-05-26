@@ -36,22 +36,26 @@ class _AgendaPageState extends State<AgendaPage> {
                 );
               return SizedBox(
                 width: 280,
-                child: DropdownButton<Contact>(
-                  isExpanded: true,
-                  icon: Icon(Icons.person),
-                  items: snapshot.data!
-                      .map((contact) => DropdownMenuItem<Contact>(
-                            child: Text(contact.name.toString()),
-                            value: contact,
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      value = this.contact;
-                    });
-                  },
-                  //value: _currentUser,
-                  hint: Text('Selecione Contato'),
+                child: Column(
+                  children: [
+                    DropdownButton<Contact>(
+                      isExpanded: true,
+                      icon: Icon(Icons.person),
+                      items: snapshot.data!
+                          .map((contact) => DropdownMenuItem<Contact>(
+                                child: Text(contact.name.toString()),
+                                value: contact,
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          value = this.contact;
+                        });
+                      },
+                      //value: _currentUser,
+                      hint: Text('Selecione Contato'),
+                    ),
+                  ],
                 ),
               );
             }),
