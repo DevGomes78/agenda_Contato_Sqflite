@@ -42,36 +42,46 @@ class _ContactPageState extends State<ContactPage> {
     return WillPopScope(
       onWillPop: _requestPop,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          elevation: 0,
-          toolbarHeight: 100,
-          backgroundColor: Colors.white,
-          title: Text(_editedContact!.name ?? "Novo Contato"),
-          centerTitle: true,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(90),
-              ),
-              gradient: LinearGradient(
-                  colors: [(Colors.grey), (Colors.pink)],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
             ),
           ),
+          elevation: 1,
+          backgroundColor: Colors.white,
+          title: Text(
+            _editedContact!.name ?? "Novo Contato",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 150),
-              _editNome(),
-              SizedBox(height: 10),
-              _editiEmail(),
-              SizedBox(height: 10),
-              _editTelefone(),
-              SizedBox(height: 30),
-              btnSave(),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 50),
+                _editNome(),
+                SizedBox(height: 10),
+                _editiEmail(),
+                SizedBox(height: 10),
+                _editTelefone(),
+                SizedBox(height: 20),
+                btnSave(),
+              ],
+            ),
           ),
         ),
       ),
@@ -79,33 +89,27 @@ class _ContactPageState extends State<ContactPage> {
   }
 
   btnSave() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: GestureDetector(
-        onTap: () {
-          if (_editedContact!.name != null &&
-              _editedContact!.name!.isNotEmpty) {
-            Navigator.pop(context, _editedContact);
-          } else {
-            FocusScope.of(context).requestFocus(_nameFocus);
-          }
-        },
-        child: Container(
-          alignment: Alignment.center,
-          height: 55,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            gradient: LinearGradient(
-                colors: [(Colors.grey), (Colors.pink)],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter),
-          ),
-          child: Text(
-            'Salvar',
-            style: TextStyle(
-              color: Colors.white,
-            ),
+    return GestureDetector(
+      onTap: () {
+        if (_editedContact!.name != null && _editedContact!.name!.isNotEmpty) {
+          Navigator.pop(context, _editedContact);
+        } else {
+          FocusScope.of(context).requestFocus(_nameFocus);
+        }
+      },
+      child: Container(
+        alignment: Alignment.center,
+        height: 55,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          color: Colors.deepPurple,
+        ),
+        child: Text(
+          'Salvar',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
           ),
         ),
       ),
@@ -113,66 +117,57 @@ class _ContactPageState extends State<ContactPage> {
   }
 
   _editTelefone() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          color: Colors.grey[200],
-        ),
-        child: TextFormWidget(
-          "Phone",
-          Icon(Icons.phone, color: Colors.deepPurple),
-          controller: _phoneController,
-          onChanged: (text) {
-            _userEdited = true;
-            _editedContact!.phone = text;
-          },
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: Colors.grey[200],
+      ),
+      child: TextFormWidget(
+        "Telefone",
+        Icon(Icons.phone, color: Colors.deepPurple),
+        controller: _phoneController,
+        onChanged: (text) {
+          _userEdited = true;
+          _editedContact!.phone = text;
+        },
       ),
     );
   }
 
   _editiEmail() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          color: Colors.grey[200],
-        ),
-        child: TextFormWidget(
-          "Email",
-          Icon(Icons.email, color: Colors.deepPurple),
-          controller: _emailController,
-          onChanged: (text) {
-            _userEdited = true;
-            _editedContact!.email = text;
-          },
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: Colors.grey[200],
+      ),
+      child: TextFormWidget(
+        "Email",
+        Icon(Icons.email, color: Colors.deepPurple),
+        controller: _emailController,
+        onChanged: (text) {
+          _userEdited = true;
+          _editedContact!.email = text;
+        },
       ),
     );
   }
 
   _editNome() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          color: Colors.grey[200],
-        ),
-        child: TextFormWidget(
-          "Nome",
-          Icon(Icons.people, color: Colors.deepPurple),
-          controller: _nameController,
-          onChanged: (text) {
-            _userEdited = true;
-            setState(() {
-              _editedContact!.name = text;
-            });
-          },
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: Colors.grey[200],
+      ),
+      child: TextFormWidget(
+        "Nome",
+        Icon(Icons.people, color: Colors.deepPurple),
+        controller: _nameController,
+        onChanged: (text) {
+          _userEdited = true;
+          setState(() {
+            _editedContact!.name = text;
+          });
+        },
       ),
     );
   }

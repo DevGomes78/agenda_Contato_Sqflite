@@ -4,5 +4,4 @@ class ContantsData{
   final String nameColumn = "nameColumn";
   final String emailColumn = "emailColumn";
   final String phoneColumn = "phoneColumn";
-  final String imgColumn = "imgColumn";
 }

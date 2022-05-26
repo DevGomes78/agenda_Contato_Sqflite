@@ -14,7 +14,6 @@ class Contact {
     name = map[ContantsData().nameColumn];
     email = map[ContantsData().emailColumn];
     phone = map[ContantsData().phoneColumn];
-    img = map[ContantsData().imgColumn];
   }
 
   Map<String, dynamic> toMap() {
@@ -22,7 +21,6 @@ class Contact {
       ContantsData().nameColumn: name,
       ContantsData().emailColumn: email,
       ContantsData().phoneColumn: phone,
-      ContantsData().imgColumn: img
     };
     if (id != null) {
       map[ContantsData().idColumn] = id;

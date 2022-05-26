@@ -26,7 +26,7 @@ class TextFormWidget extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(30),
         ),
         prefixIcon: prefixIcon,
         suffixIcon: sulfixIcon,

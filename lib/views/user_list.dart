@@ -30,17 +30,20 @@ class _UserListState extends State<UserList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _AppBar(),
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFFB5D1FCFF),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _showContactPage();
         },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.pink,
+        child: Icon(
+          Icons.add,
+          color: Colors.blue,
+          size: 28,
+        ),
+        backgroundColor: Colors.white,
       ),
       body: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 10.0,
-              vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20),
           itemCount: contacts.length,
           itemBuilder: (context, index) {
             return _contactCard(context, index);
@@ -53,18 +56,17 @@ class _UserListState extends State<UserList> {
       borderRadius: BorderRadius.circular(20),
       child: Card(
         elevation: 5,
-        color: Colors.white70,
+        color: Colors.white,
         child: GestureDetector(
           onTap: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => UserPage(
-                      contact: contacts[index],
-                    )));
+                          contact: contacts[index],
+                        )));
           },
           child: ListTile(
-            isThreeLine: true,
             title: Text(
               contacts[index].name ?? "",
               style: TextStyle(
@@ -72,18 +74,9 @@ class _UserListState extends State<UserList> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  contacts[index].email ?? "",
-                  style: TextStyle(fontSize: 18.0),
-                ),
-                Text(
-                  contacts[index].phone ?? "",
-                  style: TextStyle(fontSize: 18.0),
-                ),
-              ],
+            subtitle: Text(
+              contacts[index].phone ?? "",
+              style: TextStyle(fontSize: 18.0),
             ),
             trailing: Container(
               width: 100,
@@ -95,7 +88,6 @@ class _UserListState extends State<UserList> {
                     },
                     icon: Icon(
                       Icons.edit,
-                      size: 30,
                       color: Colors.blue,
                     ),
                   ),
@@ -108,7 +100,6 @@ class _UserListState extends State<UserList> {
                     },
                     icon: Icon(
                       Icons.delete,
-                      size: 30,
                       color: Colors.red,
                     ),
                   ),
@@ -123,13 +114,27 @@ class _UserListState extends State<UserList> {
 
   _AppBar() {
     return AppBar(
-      elevation: 0,
-      title: Text("Contatos"),
+      leading: IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          Icons.arrow_back,
+          color: Colors.black,
+        ),
+      ),
+      elevation: 1,
+      title: Text(
+        "Contatos",
+        style: TextStyle(
+          color: Colors.black,
+        ),
+      ),
       backgroundColor: Colors.white,
       centerTitle: true,
-      toolbarHeight: 70,
       actions: <Widget>[
         PopupMenuButton<OrderOptions>(
+          color: Colors.white,
           itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
             const PopupMenuItem<OrderOptions>(
               child: Text("Ordenar de A-Z"),
@@ -143,17 +148,6 @@ class _UserListState extends State<UserList> {
           onSelected: _orderList,
         )
       ],
-      flexibleSpace: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(90),
-          ),
-          gradient: LinearGradient(
-              colors: [(Colors.grey), (Colors.pink)],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter),
-        ),
-      ),
     );
   }
 
@@ -224,8 +218,8 @@ class _UserListState extends State<UserList> {
         context,
         MaterialPageRoute(
             builder: (context) => ContactPage(
-              contact: contact,
-            )));
+                  contact: contact,
+                )));
     if (recContact != null) {
       if (contact != null) {
         await helper.updateContact(recContact);

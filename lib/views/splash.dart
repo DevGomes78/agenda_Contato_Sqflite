@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+
 import 'home_page.dart';
 
-class SplashScreen extends StatefulWidget {
+class Splash extends StatefulWidget {
+  const Splash({Key? key}) : super(key: key);
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<Splash> createState() => _SplashState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(),
@@ -24,26 +27,15 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: buildCenter(),
-    );
-  }
-
-  Center buildCenter() {
-    return Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            'images/images.png',fit: BoxFit.cover,
-            height: 250,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
-            child: LinearProgressIndicator(),
-          ),
-        ],
-      ),
-    );
+        body: Stack(
+          children: [
+            Center(
+              child: Container(
+                height: 150,
+                child: Image.asset('images/tela.jpg'),
+              ),
+            ),
+          ],
+        ));
   }
 }

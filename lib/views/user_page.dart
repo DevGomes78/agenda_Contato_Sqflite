@@ -9,22 +9,25 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Color(0xFFB5D1FCFF),
         appBar: AppBar(
-          elevation: 0,
-          toolbarHeight: 100,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(90),
-              ),
-              gradient: LinearGradient(
-                  colors: [(Colors.black), (Colors.blue)],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
             ),
           ),
+          elevation: 1,
           backgroundColor: Colors.white,
-          title: Text(contact!.name.toString()),
+          title: Text(
+            contact!.name.toString(),
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
           centerTitle: true,
         ),
         body: Column(
