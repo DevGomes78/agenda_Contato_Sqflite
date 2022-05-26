@@ -51,7 +51,7 @@ class _AgendaPageState extends State<AgendaPage> {
                     });
                   },
                   //value: _currentUser,
-                  hint: Text('Selecione Contatos'),
+                  hint: Text('Selecione Contato'),
                 ),
               );
             }),
